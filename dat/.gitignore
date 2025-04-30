@@ -1,0 +1,6 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!README.md
+!codebook-us_cohort_linked_infant_deaths_births.yaml

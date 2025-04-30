@@ -10,16 +10,22 @@
 
 # Init ------------------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(lme4)
+library(ggplot2)
 
-source('src/00-global.R')
-
-path <- list(
-  lifetab = 'out/lifetab.rds',
-  hazards = 'out/hazards.rds',
-  out = 'out'
+paths <- list()
+paths$input <- list(
+  global.R = './src/_global.R',
+  lifetab.rds = './out/10-lifetab.rds'
 )
+paths$output <- list(
+  hazards.rds = './out/30-hazards.rds',
+  hazards.pdf = './out/30-hazards.pdf'
+)
+
+source(paths$input$global.R)
 
 hazards <- list()
 fig <- list()
@@ -27,7 +33,7 @@ fig <- list()
 # Load data -------------------------------------------------------
 
 # neonatal and infant death counts and exposures by stratum
-lifetab <- readRDS(path$lifetab)
+lifetab <- readRDS(paths$input$lifetab.rds)
 
 # Model hazards by stratum ----------------------------------------
 
@@ -340,12 +346,15 @@ fig$hazards <-
     axis = '', size = 7, ar = 0.8, panel_border = TRUE, grid = ''
   )
 
+fig$hazards
+
 # Export ----------------------------------------------------------
 
-saveRDS(hazards, path$hazards)
+saveRDS(hazards, paths$output$hazards.rds)
 
-figspec$ExportFigure(
-  fig$hazards, path = path$out,
-  filename = 'hazards',
-  device = 'pdf'
+ggsave(
+  paths$output$hazards.pdf,
+  fig$hazards,
+  width = figspec$fig_dims$width,
+  units = 'mm'
 )

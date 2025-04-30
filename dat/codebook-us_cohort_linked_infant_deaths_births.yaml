@@ -1,0 +1,1124 @@
+---
+codebook:
+    date    : 2019-12-17
+    author  : Jonas Schöley
+    contact : schoeley@demogr.mpg.de
+collection:
+    name        : Cohort Linked Birth / Infant Death Data Set
+    source      : Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Health Statistics, Division of Vital Statistics
+    date        : 2018
+    author      : National Center for Health Statistics
+    description : The linked birth and infant death data set is a valuable tool for monitoring and exploring the complex inter-relationships between infant death and risk factors present at birth. In the linked birth and infant death data set the information from the death certificate is linked to the information from the birth certificate for each infant under 1 year of age who dies in the United States, Puerto Rico, The Virgin Islands, and Guam. The purpose of the linkage is to use the many additional variables available from the birth certificate to conduct more detailed analyses of infant mortality patterns. The linked files include information from the birth certificate such as age, race, and Hispanic origin of the parents, birth weight, period of gestation, plurality, prenatal care usage, maternal education, live birth order, marital status, and maternal smoking, linked to information from the death certificate such as age at death and underlying and multiple cause of death.
+    location    : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/
+dictionary:
+    sex: &sex
+        '1': 'Male'
+        '2': 'Female'
+    sex_03: &sex_03
+        'M': 'Male'
+        'F': 'Female'
+    plurality: &plurality
+         '1': 'Single'
+         '2': 'Twin'
+         '3': 'Triplet'
+         '4': 'Quadruplet'
+         '5': 'Quintruplet or higher'
+    weekday_of_delivery: &weekday_of_delivery
+         '1': 'Sunday'
+         '2': 'Monday'
+         '3': 'Tuesday'
+         '4': 'Wednesday'
+         '5': 'Thursday'
+         '6': 'Friday'
+         '7': 'Saturday'
+    age_of_mother_c: &age_of_mother_c
+        '01': 'Under 15'
+        '02': '15'
+        '03': '16'
+        '04': '17'
+        '05': '18'
+        '06': '19'
+        '07': '20'
+        '08': '21'
+        '09': '22'
+        '10': '23'
+        '11': '24'
+        '12': '25'
+        '13': '26'
+        '14': '27'
+        '15': '28'
+        '16': '29'
+        '17': '30'
+        '18': '31'
+        '19': '32'
+        '20': '33'
+        '21': '34'
+        '22': '35'
+        '23': '36'
+        '24': '37'
+        '25': '38'
+        '26': '39'
+        '27': '40'
+        '28': '41'
+        '29': '42'
+        '30': '43'
+        '31': '44'
+        '32': '45'
+        '33': '46'
+        '34': '47'
+        '35': '48'
+        '36': '49'
+        '37': '50'
+        '38': '51'
+        '39': '52'
+        '40': '53'
+        '41': '54'
+    age_of_mother_c_04: &age_of_mother_c_04
+        '12': '10-12'
+        '13': '13'
+        '14': '14'
+        '15': '15'
+        '16': '16'
+        '17': '17'
+        '18': '18'
+        '19': '19'
+        '20': '20'
+        '21': '21'
+        '22': '22'
+        '23': '23'
+        '24': '24'
+        '25': '25'
+        '26': '26'
+        '27': '27'
+        '28': '28'
+        '29': '29'
+        '30': '30'
+        '31': '31'
+        '32': '32'
+        '33': '33'
+        '34': '34'
+        '35': '35'
+        '36': '36'
+        '37': '37'
+        '38': '38'
+        '39': '39'
+        '40': '40'
+        '41': '41'
+        '42': '42'
+        '43': '43'
+        '44': '44'
+        '45': '45'
+        '46': '46'
+        '47': '47'
+        '48': '48'
+        '49': '49'
+        '50': '50-54'
+    age_at_death_c: &age_at_death_c
+         '1': 'Under 1 hour'
+         '2': '1-23 hours'
+         '3': '1-6 days'
+         '4': '7-27 days'
+         '5': '28 days and over'
+    race_and_hispanic_orig_of_mother: &race_and_hispanic_orig_of_mother
+         '1': 'Mexican'
+         '2': 'Puerto Rican'
+         '3': 'Cuban'
+         '4': 'Central or South American'
+         '5': 'Other and unknown Hispanic'
+         '6': 'Non-Hispanic White'
+         '7': 'Non-Hispanic Black'
+         '8': 'Non-Hispanic other races'
+         '9': 'Origin unknown or not stated'
+    martial_status_of_mother: &martial_status_of_mother
+         '1': 'Married'
+         '2': 'Unmarried'
+         '9': 'Unknown or not stated'
+    education_of_mother_rev03: &education_of_mother_rev03
+         '1': '8th grade or less'
+         '2': '9th through 12th grade with no diploma'
+         '3': 'High school graduate or GED completed'
+         '4': 'Some college credit, but not a degree'
+         '5': 'Associate degree'
+         '6': 'Bachelors degree'
+         '7': 'Masters degree'
+         '8': 'Doctorate or professional degree'
+         '9': 'Unknown'
+    education_of_mother: &education_of_mother
+         '00': 'No formal education'
+         '01': '1 year of elementary school education'
+         '02': '2 years of elementary school education'
+         '03': '3 years of elementary school education'
+         '04': '4 years of elementary school education'
+         '05': '5 years of elementary school education'
+         '06': '6 years of elementary school education'
+         '07': '7 years of elementary school education'
+         '08': '8 years of elementary school education'
+         '09': '1 year of high school education'
+         '10': '2 years of high school education'
+         '11': '3 years of high school education'
+         '12': '4 years of high school education'
+         '13': '1 year of college education'
+         '14': '2 years of college education'
+         '15': '3 years of college education'
+         '16': '4 years of college education'
+         '17': '5 or more years of college education'
+         '99': 'Not stated'
+    gestation_at_delivery_w_imputed: &gestation_at_delivery_w_imputed
+         ' ': 'Not imputed'
+         '1': 'Imputed'
+    gestation_at_delivery_w_clinical: &gestation_at_delivery_w_clinical
+         ' ': 'Clinical estimate not used'
+         '1': 'Clinical estimate used'
+    birthweight_g_imputed: &birthweight_g_imputed
+         ' ': 'Not imputed'
+         '1': 'Imputed'
+files:
+    Cohort1995:
+        description : 1995 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO95US.zip
+        filename    : LinkCO95USDen.dat
+        variables   : &var_95
+        # Information on Mother
+            age_of_mother_y:
+                label          : Age of Mother at Delivery in Years
+                start          : 30
+                end            : 31
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            race_and_hispanic_orig_of_mother:
+                label          : Race and Hispanic Origin of Mother
+                start          : 34
+                end            : 34
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *race_and_hispanic_orig_of_mother
+                missing_values : 9
+            martial_status_of_mother:
+                label          : Martial Status of Mother
+                start          : 43
+                end            : 43
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *martial_status_of_mother
+                missing_values : 9
+            education_of_mother:
+                label          : Education of Mother
+                start          : 39
+                end            : 40
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother
+                missing_values : 99
+        # Information on Delivery
+            date_of_delivery_y:
+                label          : Delivery Year
+                start          : 7
+                end            : 10
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            date_of_delivery_m:
+                label          : Delivery Month
+                start          : 205
+                end            : 206
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            weekday_of_delivery:
+                label          : Weekday of Delivery
+                start          : 209
+                end            : 209
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *weekday_of_delivery
+                missing_values :
+        # Information on child
+            sex:
+                label          : Sex of Infant
+                start          : 79
+                end            : 79
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *sex
+                missing_values :
+            birthweight_g:
+                label          : Birthweight in Grams
+                start          : 81
+                end            : 84
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 9999
+            gestation_at_delivery_w:
+                label          : Gestation at Delivery in Weeks
+                start          : 71
+                end            : 72
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            plurality:
+                label          : Plurality
+                start          : 89
+                end            : 89
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *plurality
+                missing_values :
+            apgar5:
+                label          : Five Minute APGAR Score
+                start          : 90
+                end            : 91
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            age_at_death_d:
+                label          : Age at Death in Days
+                start          : 211
+                end            : 213
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            age_at_death_c:
+                label          : Age at Death Recode 5
+                start          : 214
+                end            : 214
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_at_death_c
+                missing_values :
+            cause_of_death_icd9:
+                label          : Cause of death ICD-9
+                start          : 216
+                end            : 219
+                type           : integer
+                format         :
+                scale          :
+                categories     :
+                missing_values :
+            # flags
+            gestation_at_delivery_w_imputed:
+                label          : Gestation at Delivery Imputation Flag
+                start          : 73
+                end            : 73
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_imputed
+                missing_values :
+            gestation_at_delivery_w_clinical:
+                label          : Clinical Estimate of Gestation Flag
+                start          : 70
+                end            : 70
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_clinical
+                missing_values :
+            birthweight_g_imputed:
+                label          : Birthweight Imputation Flag
+                start          : 80
+                end            : 80
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *birthweight_g_imputed
+                missing_values :
+    Cohort1996:
+        description : 1996 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO96US.zip
+        filename    : LinkCO96USDen.dat
+        variables   : *var_95
+    Cohort1997:
+        description : 1997 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO97US.zip
+        filename    : LinkCO97USDen.dat
+        variables   : *var_95
+    Cohort1998:
+        description : 1998 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO98US.zip
+        filename    : LinkCO98USDen.dat
+        variables   : *var_95
+    Cohort1999:
+        description : 1999 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO99US.zip
+        filename    : LinkCO99USDen.dat
+        variables   : &var_99
+        # Information on Mother
+            age_of_mother_y:
+                label          : Age of Mother at Delivery in Years
+                start          : 30
+                end            : 31
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            race_and_hispanic_orig_of_mother:
+                label          : Race and Hispanic Origin of Mother
+                start          : 34
+                end            : 34
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *race_and_hispanic_orig_of_mother
+                missing_values : 9
+            martial_status_of_mother:
+                label          : Martial Status of Mother
+                start          : 43
+                end            : 43
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *martial_status_of_mother
+                missing_values : 9
+            education_of_mother:
+                label          : Education of Mother
+                start          : 39
+                end            : 40
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother
+                missing_values : 99
+        # Information on Delivery
+            date_of_delivery_y:
+                label          : Delivery Year
+                start          : 7
+                end            : 10
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            date_of_delivery_m:
+                label          : Delivery Month
+                start          : 205
+                end            : 206
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            weekday_of_delivery:
+                label          : Weekday of Delivery
+                start          : 209
+                end            : 209
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *weekday_of_delivery
+                missing_values :
+        # Information on child
+            sex:
+                label          : Sex of Infant
+                start          : 79
+                end            : 79
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *sex
+                missing_values :
+            birthweight_g:
+                label          : Birthweight in Grams
+                start          : 81
+                end            : 84
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 9999
+            gestation_at_delivery_w:
+                label          : Gestation at Delivery in Weeks
+                start          : 71
+                end            : 72
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            plurality:
+                label          : Plurality
+                start          : 89
+                end            : 89
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *plurality
+                missing_values :
+            apgar5:
+                label          : Five Minute APGAR Score
+                start          : 90
+                end            : 91
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            age_at_death_d:
+                label          : Age at Death in Days
+                start          : 211
+                end            : 213
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            age_at_death_c:
+                label          : Age at Death Recode 5
+                start          : 214
+                end            : 214
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_at_death_c
+                missing_values :
+            cause_of_death_icd10:
+                label          : Cause of death ICD-10
+                start          : 216
+                end            : 219
+                type           : character
+                format         :
+                scale          :
+                categories     :
+                missing_values :
+            # flags
+            gestation_at_delivery_w_imputed:
+                label          : Gestation at Delivery Imputation Flag
+                start          : 73
+                end            : 73
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_imputed
+                missing_values :
+            gestation_at_delivery_w_clinical:
+                label          : Clinical Estimate of Gestation Flag
+                start          : 70
+                end            : 70
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_clinical
+                missing_values :
+            birthweight_g_imputed:
+                label          : Birthweight Imputation Flag
+                start          : 80
+                end            : 80
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *birthweight_g_imputed
+                missing_values :
+    Cohort2000:
+        description : 2000 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO00US.zip
+        filename    : LinkCO00USDen.dat
+        variables   : *var_99
+    Cohort2001:
+        description : 2001 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO01US.zip
+        filename    : LinkCO01USDen.dat
+        variables   : *var_99
+    Cohort2002:
+        description : 2002 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO02US.zip
+        filename    : LinkCO02USDEN.dat
+        variables   : *var_99
+    Cohort2003:
+        description : 2003 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO03US.zip
+        filename    : VS03LKBC.USDENPUB
+        variables   : &var_03
+        # Information on Mother
+            age_of_mother_c:
+                label          : Age-group of Mother at Delivery
+                start          : 89
+                end            : 90
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_of_mother_c
+                missing_values :
+            race_and_hispanic_orig_of_mother:
+                label          : Race and Hispanic Origin of Mother
+                start          : 149
+                end            : 149
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *race_and_hispanic_orig_of_mother
+                missing_values : 9
+            martial_status_of_mother:
+                label          : Martial Status of Mother
+                start          : 153
+                end            : 153
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *martial_status_of_mother
+                missing_values : 9
+            education_of_mother_rev03:
+                label          : Education of Mother (2003 Revision)
+                start          : 155
+                end            : 155
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother_rev03
+                missing_values : 9
+            education_of_mother:
+                label          : Education of Mother
+                start          : 156
+                end            : 157
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother
+                missing_values : 99
+        # Information on Delivery
+            date_of_delivery_y:
+                label          : Delivery Year
+                start          : 15
+                end            : 18
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            date_of_delivery_m:
+                label          : Delivery Month
+                start          : 19
+                end            : 20
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            weekday_of_delivery:
+                label          : Weekday of Delivery
+                start          : 29
+                end            : 29
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *weekday_of_delivery
+                missing_values :
+        # Information on child
+            sex:
+                label          : Sex of Infant
+                start          : 436
+                end            : 436
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *sex_03
+                missing_values :
+            birthweight_g:
+                label          : Birthweight in Grams
+                start          : 467
+                end            : 470
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 9999
+            gestation_at_delivery_w:
+                label          : Gestation at Delivery in Weeks
+                start          : 451
+                end            : 452
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            plurality:
+                label          : Plurality
+                start          : 423
+                end            : 423
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *plurality
+                missing_values :
+            apgar5:
+                label          : Five Minute APGAR Score
+                start          : 415
+                end            : 416
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            age_at_death_d:
+                label          : Age at Death in Days
+                start          : 755
+                end            : 757
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            age_at_death_c:
+                label          : Age at Death Recode 5
+                start          : 758
+                end            : 758
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_at_death_c
+                missing_values :
+            cause_of_death_icd10:
+                label          : Cause of death ICD-10
+                start          : 767
+                end            : 770
+                type           : character
+                format         :
+                scale          :
+                categories     :
+                missing_values :
+            # flags
+            gestation_at_delivery_w_imputed:
+                label          : Gestation at Delivery Imputation Flag
+                start          : 457
+                end            : 457
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_imputed
+                missing_values :
+            gestation_at_delivery_w_clinical:
+                label          : Clinical Estimate of Gestation Flag
+                start          : 456
+                end            : 456
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_clinical
+                missing_values :
+            birthweight_g_imputed:
+                label          : Birthweight Imputation Flag
+                start          : 475
+                end            : 475
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *birthweight_g_imputed
+                missing_values :
+    Cohort2004:
+        description : 2004 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO04US.zip
+        filename    : VS04LKBC.DUSDENOM
+        variables   : &var_04
+        # Information on Mother
+            age_of_mother_c_04:
+                label          : Age of Mother at Delivery in Years (2004 Coding)
+                start          : 89
+                end            : 90
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_of_mother_c_04
+                missing_values :
+            race_and_hispanic_orig_of_mother:
+                label          : Race and Hispanic Origin of Mother
+                start          : 149
+                end            : 149
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *race_and_hispanic_orig_of_mother
+                missing_values : 9
+            martial_status_of_mother:
+                label          : Martial Status of Mother
+                start          : 153
+                end            : 153
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *martial_status_of_mother
+                missing_values : 9
+            education_of_mother_rev03:
+                label          : Education of Mother (2003 Revision)
+                start          : 155
+                end            : 155
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother_rev03
+                missing_values : 9
+            education_of_mother:
+                label          : Education of Mother
+                start          : 156
+                end            : 157
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother
+                missing_values : 99
+        # Information on Delivery
+            date_of_delivery_y:
+                label          : Delivery Year
+                start          : 15
+                end            : 18
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            date_of_delivery_m:
+                label          : Delivery Month
+                start          : 19
+                end            : 20
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            weekday_of_delivery:
+                label          : Weekday of Delivery
+                start          : 29
+                end            : 29
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *weekday_of_delivery
+                missing_values :
+        # Information on child
+            sex:
+                label          : Sex of Infant
+                start          : 436
+                end            : 436
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *sex_03
+                missing_values :
+            birthweight_g:
+                label          : Birthweight in Grams
+                start          : 467
+                end            : 470
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 9999
+            gestation_at_delivery_w:
+                label          : Gestation at Delivery in Weeks
+                start          : 451
+                end            : 452
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            plurality:
+                label          : Plurality
+                start          : 423
+                end            : 423
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *plurality
+                missing_values :
+            apgar5:
+                label          : Five Minute APGAR Score
+                start          : 415
+                end            : 416
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            age_at_death_d:
+                label          : Age at Death in Days
+                start          : 872
+                end            : 874
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            age_at_death_c:
+                label          : Age at Death Recode 5
+                start          : 875
+                end            : 875
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_at_death_c
+                missing_values :
+            cause_of_death_icd10:
+                label          : Cause of death ICD-10
+                start          : 884
+                end            : 887
+                type           : character
+                format         :
+                scale          :
+                categories     :
+                missing_values :
+            # flags
+            gestation_at_delivery_w_imputed:
+                label          : Gestation at Delivery Imputation Flag
+                start          : 457
+                end            : 457
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_imputed
+                missing_values :
+            gestation_at_delivery_w_clinical:
+                label          : Clinical Estimate of Gestation Flag
+                start          : 456
+                end            : 456
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_clinical
+                missing_values :
+            birthweight_g_imputed:
+                label          : Birthweight Imputation Flag
+                start          : 475
+                end            : 475
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *birthweight_g_imputed
+                missing_values :
+    Cohort2005:
+        description : 2005 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO05US.zip
+        filename    : VS05LKBC.DUSDENOM
+        variables   : *var_04
+    Cohort2006:
+        description : 2006 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO06US.zip
+        filename    : VS06LKBC.DUSDENOM
+        variables   : *var_04
+    Cohort2007:
+        description : 2007 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO07US.zip
+        filename    : VS07LKBC.DUSDENOM
+        variables   : *var_04
+    Cohort2008:
+        description : 2008 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO08US.zip
+        filename    : VS08LKBC.DUSDENOM
+        variables   : *var_04
+    Cohort2009:
+        description : 2009 US Territory Cohort Linked Infant Deaths and Births (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO09US.zip
+        filename    : VS09LKBC.PublicUse.DUSDENOM
+        variables   : *var_04
+    Cohort2010:
+        description : 2010 US Territory Cohort Linked Infant Deaths (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO10US.zip
+        filename    : VS10LKBC.PubilcUse.DUSDENOM
+        variables   : *var_04
+    Cohort2011:
+        description : 2011 US Territory Cohort Linked Infant Deaths (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO11US.zip
+        filename    : VS11LKBC.PubilcUse.DUSDENOM
+        variables   : &var_11
+            # Information on Mother
+            age_of_mother_c_04:
+                label          : Age of Mother at Delivery in Years (2004 Coding)
+                start          : 89
+                end            : 90
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_of_mother_c_04
+                missing_values :
+            race_and_hispanic_orig_of_mother:
+                label          : Race and Hispanic Origin of Mother
+                start          : 149
+                end            : 149
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *race_and_hispanic_orig_of_mother
+                missing_values : 9
+            martial_status_of_mother:
+                label          : Martial Status of Mother
+                start          : 153
+                end            : 153
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *martial_status_of_mother
+                missing_values : 9
+            education_of_mother_rev03:
+                label          : Education of Mother (2003 Revision)
+                start          : 155
+                end            : 155
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *education_of_mother_rev03
+                missing_values : 9
+        # Information on Delivery
+            date_of_delivery_y:
+                label          : Delivery Year
+                start          : 15
+                end            : 18
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            date_of_delivery_m:
+                label          : Delivery Month
+                start          : 19
+                end            : 20
+                type           : integer
+                format         :
+                scale          : date
+                categories     :
+                missing_values :
+            weekday_of_delivery:
+                label          : Weekday of Delivery
+                start          : 29
+                end            : 29
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *weekday_of_delivery
+                missing_values :
+        # Information on child
+            sex:
+                label          : Sex of Infant
+                start          : 436
+                end            : 436
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *sex_03
+                missing_values :
+            birthweight_g:
+                label          : Birthweight in Grams
+                start          : 467
+                end            : 470
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 9999
+            gestation_at_delivery_w:
+                label          : Gestation at Delivery in Weeks
+                start          : 451
+                end            : 452
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            plurality:
+                label          : Plurality
+                start          : 423
+                end            : 423
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *plurality
+                missing_values :
+            apgar5:
+                label          : Five Minute APGAR Score
+                start          : 415
+                end            : 416
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values : 99
+            age_at_death_d:
+                label          : Age at Death in Days
+                start          : 872
+                end            : 874
+                type           : integer
+                format         :
+                scale          : metric
+                categories     :
+                missing_values :
+            age_at_death_c:
+                label          : Age at Death Recode 5
+                start          : 875
+                end            : 875
+                type           : factor
+                format         :
+                scale          : ordinal
+                categories     : *age_at_death_c
+                missing_values :
+            cause_of_death_icd10:
+                label          : Cause of death ICD-10
+                start          : 884
+                end            : 887
+                type           : character
+                format         :
+                scale          :
+                categories     :
+                missing_values :
+            # flags
+            gestation_at_delivery_w_imputed:
+                label          : Gestation at Delivery Imputation Flag
+                start          : 457
+                end            : 457
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_imputed
+                missing_values :
+            gestation_at_delivery_w_clinical:
+                label          : Clinical Estimate of Gestation Flag
+                start          : 456
+                end            : 456
+                type           : factor
+                format         :
+                scale          : nominal
+                categories     : *gestation_at_delivery_w_clinical
+                missing_values :
+            # birthweight_g_imputed not available starting 2011
+    Cohort2012:
+        description : 2012 US Territory Cohort Linked Infant Deaths (Denominator File)
+        format      : Fixed Width ASCII Text
+        url         : ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO12US.zip
+        filename    : VS12LKBC.DUSDENOM
+        variables   : *var_11
+...

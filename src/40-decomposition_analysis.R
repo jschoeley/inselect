@@ -5,16 +5,19 @@
 
 # Init ------------------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
 
-source('src/00-global.R')
-
-path <- list(
-  lifetab = 'out/lifetab.rds',
-  hazards = 'out/hazards.rds',
-  out = 'out',
-  decomp = 'out/decomp.rds'
+paths <- list()
+paths$input <- list(
+  global.R = './src/_global.R',
+  lifetab.rds = './out/10-lifetab.rds',
+  hazards.rds = './out/30-hazards.rds'
 )
+paths$output <- list(
+  decomp.rds = './out/40-decomp.rds'
+)
+
+source(paths$input$global.R)
 
 decomp <- list()
 fig <- list()
@@ -22,9 +25,9 @@ fig <- list()
 # Load data -------------------------------------------------------
 
 # neonatal and infant death counts and exposures by stratum
-lifetab <- readRDS(path$lifetab)
+lifetab <- readRDS(paths$input$lifetab.rds)
 # estimated neonatal hazard trajectories by stratum
-hazards <- readRDS(path$hazards)
+hazards <- readRDS(paths$input$hazards.rds)
 
 # Vaupel-Zhang decomposition --------------------------------------
 
@@ -360,4 +363,4 @@ DecomposeKitagawa <- function (g1_k, g2_k, p1_k, p2_k) {
 
 # Export ----------------------------------------------------------
 
-saveRDS(decomp, file = path$decomp)
+saveRDS(decomp, file = paths$output$decomp.rds)

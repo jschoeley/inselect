@@ -1,17 +1,9 @@
-# General --------------------------------------------------------------
-
 pvt
-dat
-
-# Ignore dotted files and folders --------------------------------------
-
-# ignore all . files and . folders
-.*
 
 # don't ignore .gitignore
 !/.gitignore
 
-# R specific -----------------------------------------------------------
+# R specific ---
 
 # History files
 .Rhistory
@@ -22,6 +14,7 @@ dat
 .Rproj.user
 .Rproj
 
-# VS Code --------------------------------------------------------------
+# Sublime ---
 
-*.code-workspace
+*.sublime-project
+*.sublime-workspace

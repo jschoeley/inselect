@@ -4,22 +4,28 @@
 
 # Init ------------------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 library(brms)
 
-path <- list(
-  lifetab = 'out/lifetab.rds',
-  hougaard = 'out/hougaard.rds',
-  out = 'out'
+paths <- list()
+paths$input <- list(
+  lifetab.rds = './out/10-lifetab.rds',
+  global.R = './src/_global.R'
+)
+paths$output <- list(
+  hougaard.rds = './out/20-hougaard.rds',
+  hougaard.pdf = './out/20-hougaard.pdf'
 )
 
 hougaard <- list()
 
-source('src/00-global.R')
+source(paths$input$global.R)
 
 # Load data -------------------------------------------------------
 
-lifetab <- readRDS(path$lifetab)
+lifetab <- readRDS(paths$input$lifetab.rds)
 
 # Functions -------------------------------------------------------
 
@@ -152,6 +158,7 @@ HougaardDensity(
        type = 'l')
 }
 
+# check if density integrates to ~1
 z <- 10^seq(-11, 5, 0.001)
 dz <- c(diff(z), 0)
 d <- HougaardDensity(
@@ -285,8 +292,11 @@ hougaard$plot_hazard
 
 # Export ----------------------------------------------------------
 
-figspec$ExportFigure(
+saveRDS(hougaard, paths$output$hougaard.rds)
+
+ggsave(
+  paths$output$hougaard.pdf,
   hougaard$plot_hazard,
-  filename = 'hougaard',
-  path = path$out, device = 'pdf'
+  width = figspec$fig_dims$width,
+  units = 'mm'
 )

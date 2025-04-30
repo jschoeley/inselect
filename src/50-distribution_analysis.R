@@ -2,16 +2,28 @@
 
 # Init ------------------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 
-source('src/00-global.R')
+paths <- list()
 
-path <- list(
-  lifetab = 'out/lifetab.rds',
-  hazards = 'out/hazards.rds',
-  out = 'out',
-  distribution = 'out/distribution.rds'
+paths$input <- list(
+  global.R = './src/_global.R',
+  lifetab.rds = './out/10-lifetab.rds',
+  hazards.rds = './out/30-hazards.rds'
 )
+
+paths$output <- list(
+  distribution.rds = './out/50-distribution.rds',
+  memora.pdf = './out/50-memora.pdf',
+  taylorslaw.pdf = './out/50-taylorslaw.pdf',
+  quantiles.pdf = './out/50-quantiles.pdf',
+  densities.pdf = './out/50-densities.pdf',
+  counterfactual.pdf = './out/50-counterfactual.pdf'
+)
+
+source(paths$input$global.R)
 
 distribution <- list()
 fig <- list()
@@ -19,9 +31,9 @@ fig <- list()
 # Load data -------------------------------------------------------
 
 # neonatal and infant death counts and exposures by stratum
-lifetab <- readRDS(path$lifetab)
+lifetab <- readRDS(paths$input$lifetab.rds)
 # estimated neonatal hazard trajectories by stratum
-hazards <- readRDS(path$hazards)
+hazards <- readRDS(paths$input$hazards.rds)
 
 # Mean-mode convergence -------------------------------------------
 
@@ -351,6 +363,8 @@ fig$quantiles <-
   ) +
   figspec$MyGGplotTheme(ar = 0.9, size = 7, axis = 'xy', grid = '')
 
+fig$quantiles
+
 # Density of death rates over age ---------------------------------
 
 distribution$deathrate_density <- list()
@@ -450,6 +464,8 @@ fig$densities <-
   coord_flip(ylim = c(-3, 27), clip = 'off') +
   figspec$MyGGplotTheme()
 
+fig$densities
+
 # Counterfactual hazards ------------------------------------------
 
 fig$counterfactual <-
@@ -491,6 +507,8 @@ fig$counterfactual <-
     y = 'Deaths per person-day'
   )
 
+fig$counterfactual
+
 # the ratio of counterfactual vs. estimated hazard at x = 27 is
 hazards$cohort_survival_x %>%
   filter(x == 27) %>%
@@ -498,34 +516,33 @@ hazards$cohort_survival_x %>%
 
 # Export ----------------------------------------------------------
 
-saveRDS(distribution, file = path$distribution)
+saveRDS(distribution, file = paths$output$distribution.rds)
 
-figspec$ExportFigure(
-  fig$memora, path = path$out,
-  filename = 'memora',
-  device = 'pdf'
+ggsave(
+  paths$output$memora.pdf, fig$memora,
+  width = figspec$fig_dims$width,
+  height = 0.8*figspec$fig_dims$width,
+  units = 'mm'
 )
 
-figspec$ExportFigure(
-  fig$taylorslaw, path = path$out,
-  filename = 'taylorslaw',
-  device = 'pdf'
+ggsave(
+  paths$output$taylorslaw.pdf, fig$taylorslaw,
+  width = figspec$fig_dims$width, units = 'mm'
 )
 
-figspec$ExportFigure(
-  fig$quantiles, path = path$out,
-  filename = 'quantiles',
-  device = 'pdf'
+ggsave(
+  paths$output$quantiles.pdf, fig$quantiles,
+  width = figspec$fig_dims$width, units = 'mm'
 )
 
-figspec$ExportFigure(
-  fig$densities, path = path$out,
-  filename = 'densities',
-  device = 'pdf'
+ggsave(
+  paths$output$densities.pdf, fig$densities,
+  width = figspec$fig_dims$width,
+  height = 0.8*figspec$fig_dims$width,
+  units = 'mm'
 )
 
-figspec$ExportFigure(
-  fig$counterfactual, path = path$out,
-  filename = 'counterfactual',
-  device = 'pdf'
+ggsave(
+  paths$output$counterfactual.pdf, fig$counterfactual,
+  width = figspec$fig_dims$width, units = 'mm'
 )

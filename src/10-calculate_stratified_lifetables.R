@@ -4,7 +4,9 @@
 
 # Init ------------------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(forcats)
 
 cnst <- list(
   # birthweight and gestation labels
@@ -20,12 +22,16 @@ cnst <- list(
       'Very preterm' = 'Very preterm [28,32)w',
       'Moderate to late preterm' = 'Moderate to late preterm [32,37)w',
       'Term or post-term' = 'Term 37w+',
-      '(Missing)' = '(Missing)')
+      '(Missing)' = '(Missing)'),
+  analysis_cohorts = 2008:2012
 )
 
-path <- list(
-  usinfants = 'dat/usinfants.rds',
-  lifetab = 'out/lifetab.rds'
+paths <- list()
+paths$input <- list(
+  usinfants.rds = './dat/usinfants.rds'
+)
+paths$output <- list(
+  lifetab.rds = './out/10-lifetab.rds'
 )
 
 dat <- list()
@@ -155,14 +161,15 @@ DescribeSurvivalByStratum <- function (df, death, ...) {
 # Load data -------------------------------------------------------
 
 # individual level data on infant deaths to birth cohorts US 1995-2012
-dat$usinfants <- readRDS(path$usinfants)
+dat$usinfants <- readRDS(paths$input$usinfants.rds)
 
 # Survival data preparation ---------------------------------------
 
 # basic data pooling, selection and recoding
-dat$usinfants <- dat$usinfants %>%
+dat$usinfants <-
+  dat$usinfants %>%
   # subset to study period
-  filter(date_of_delivery_y %in% 2008:2012) %>%
+  filter(date_of_delivery_y %in% cnst$analysis_cohorts) %>%
   # add variables for survival analysis
   mutate(
     # age at death in fractional days
@@ -329,4 +336,4 @@ lifetab$summary <-
 
 # Exports ---------------------------------------------------------
 
-saveRDS(lifetab, path$lifetab)
+saveRDS(lifetab, paths$output$lifetab.rds)
