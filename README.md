@@ -1,6 +1,8 @@
 # The impact of population heterogeneity on the age trajectory of neonatal mortality
 
-[Jonas Schöley](https://orcid.org/0000-0002-3340-8518)
+Jonas Schöley [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-3340-8518) · [jschoeley.com](https://www.jschoeley.com/)
+
+[![Zenodo Input Data DOI](https://img.shields.io/badge/Code%20DOI-10.5281%2Fzenodo.15304230-%23FCB525?style=flat-square)](https://doi.org/10.5281/zenodo.15304230)
 
 ![](./ass/teaser.png)
 
@@ -16,15 +18,17 @@
 
 ## Analysis
 
-Analysis files are provided for the R language. The R library dependencies are managed via `renv` with each dependency listed in `renv.lock`.
+Analysis files are provided for the R language. The R library dependencies are managed via [`renv`](https://docs.posit.co/ide/user/ide/guide/environments/r/renv.html) with each dependency listed in `renv.lock`.
 
+- `./dat`
+	- `usinfants.rds` Input data to be downloaded from Zenodo by executing [`00-download_input_data.R`](https://github.com/jschoeley/inselect/blob/master/src/00-download_input_data.R).
 - `./src`
-	- `00-download_input_data.R` Download the input data from Zenodo.
-	- `10-calculate_stratified_lifetables.R` Prepare stratified neonatal life-tables and calculate summaries.
-	- `20-fit_hougaard_gompertz_model.R` Analyze Hougaard-Gompertz model fit to neonatal life-tables.
-	- `30-fit_stratified_hazards_model.R` Estimate stratum specific hazard trajectories.
-	- `40-decomposition_analysis.R` Decompose the changing distribution of death rates over age into selection and convergence components.
-	- `50-distribution_analysis.R` Analyze the distribution of mortality rates in a cohort of newborns.
+	- [`00-download_input_data.R`](https://github.com/jschoeley/inselect/blob/master/src/00-download_input_data.R) Download the input data from Zenodo.
+	- [`10-calculate_stratified_lifetables.R`](https://github.com/jschoeley/inselect/blob/master/src/10-calculate_stratified_lifetables.R) Prepare stratified neonatal life-tables and calculate summaries.
+	- [`20-fit_hougaard_gompertz_model.R`](https://github.com/jschoeley/inselect/blob/master/src/20-fit_hougaard_gompertz_model.R) Analyze Hougaard-Gompertz model fit to neonatal life-tables.
+	- [`30-fit_stratified_hazards_model.R`](https://github.com/jschoeley/inselect/blob/master/src/30-fit_stratified_hazards_model.R) Estimate stratum specific hazard trajectories.
+	- [`40-decomposition_analysis.R`](https://github.com/jschoeley/inselect/blob/master/src/40-decomposition_analysis.R) Decompose the changing distribution of death rates over age into selection and convergence components.
+	- [`50-distribution_analysis.R`](https://github.com/jschoeley/inselect/blob/master/src/50-distribution_analysis.R) Analyze the distribution of mortality rates in a cohort of newborns.
 - `./out`
 	- `10-lifetab.rds` Neonatal life-tables.
 	- `20-hougaard.rds` Data associated with the Hougaard-Gompertz fit to neonatal life-tables.
