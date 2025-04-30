@@ -2,7 +2,7 @@
 
 Jonas Schöley [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-3340-8518) · [jschoeley.com](https://www.jschoeley.com/)
 
-[![Zenodo Input Data DOI](https://img.shields.io/badge/Code%20DOI-10.5281%2Fzenodo.15304230-%23FCB525?style=flat-square)](https://doi.org/10.5281/zenodo.15304230)
+[![Zenodo Input Data DOI](https://img.shields.io/badge/Data%20DOI-10.5281%2Fzenodo.15304230-%23FCB525?style=flat-square)](https://doi.org/10.5281/zenodo.15304230)
 
 ![](./ass/teaser.png)
 
