@@ -453,12 +453,27 @@ fig$densities <-
     aes(x = m_j, y = x_j),
     data = lifetab$neonatal_j
   ) +
-  scale_x_log10() +
+  scale_x_log10(
+    breaks =
+      c(1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1),
+    labels =
+      parse(
+        text =
+          c('10^-6',
+            'phantom()^-5', 'phantom()^-4',
+            'phantom()^-3', 'phantom()^-2', 'phantom()^-1',
+            '10^0')
+      ),
+    limits =
+      c(1e-6, 2),
+    expand =
+      c(0,0)
+  ) +
   scale_y_continuous(
     breaks = distribution$deathrate_density$age_breaks
   ) +
   labs(
-    x = 'Deaths per person-hour',
+    x = 'Deaths per person-day',
     y = 'Days since birth'
   ) +
   coord_flip(ylim = c(-3, 27), clip = 'off') +
@@ -538,7 +553,7 @@ ggsave(
 ggsave(
   paths$output$densities.pdf, fig$densities,
   width = figspec$fig_dims$width,
-  height = 0.8*figspec$fig_dims$width,
+  height = 0.4*figspec$fig_dims$width,
   units = 'mm'
 )
 
